@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apex Power &amp; Utilities &mdash; 24h Demand Forecast</title>
+  <meta name="description"
+        content="24-hour, 10-minute resolution electricity demand forecast for Apex Power &amp; Utilities, Dhanbad, Jharkhand." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <!-- Chart.js (UMD) via CDN. Annotation plugin for in-chart holiday markers. -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- ============================ HEADER ============================ -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">&#9889;</div>
+        <div class="titles">
+          <h1>Apex Power &amp; Utilities &mdash; 24h Demand Forecast</h1>
+          <p class="subtitle">
+            <span class="pin" aria-hidden="true">&#128205;</span>
+            <span id="locationText">Dhanbad, Jharkhand, India</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- KPI chips: generated-at, MAPE, RMSE, peak, weather source -->
+      <div class="kpis" id="kpis">
+        <div class="chip">
+          <span class="chip-label">Generated</span>
+          <span class="chip-value" id="kpiGenerated">&mdash;</span>
+        </div>
+        <div class="chip accent">
+          <span class="chip-label">Total MAPE</span>
+          <span class="chip-value" id="kpiMape">&mdash;</span>
+        </div>
+        <div class="chip">
+          <span class="chip-label">Total RMSE</span>
+          <span class="chip-value" id="kpiRmse">&mdash;</span>
+        </div>
+        <div class="chip">
+          <span class="chip-label">Peak Load</span>
+          <span class="chip-value" id="kpiPeak">&mdash;</span>
+        </div>
+        <div class="chip source" id="kpiSource" title="Weather data source">
+          <span class="dot" aria-hidden="true"></span>
+          <div>
+            <span class="chip-label">Weather</span>
+            <span class="chip-value" id="kpiSourceText" style="font-size:.8rem;">&mdash;</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============================= GRID ============================= -->
+    <main class="grid">
+
+      <!-- ---------- Total + feeder demand forecast (hero chart) ---------- -->
+      <section class="card span-12">
+        <div class="card-head">
+          <div>
+            <h2>24-Hour Demand Forecast</h2>
+            <span class="sub" id="forecastSub">144 &times; 10-minute blocks &middot; total &amp; per-feeder load (kW)</span>
+          </div>
+          <div class="head-right">
+            <div class="toggles" id="seriesToggles" role="group" aria-label="Toggle forecast series">
+              <button class="toggle" data-series="TOTAL" type="button">
+                <span class="swatch" style="background:var(--total)"></span>Total
+              </button>
+              <button class="toggle" data-series="F1" type="button">
+                <span class="swatch" style="background:var(--f1)"></span>F1
+              </button>
+              <button class="toggle" data-series="F2" type="button">
+                <span class="swatch" style="background:var(--f2)"></span>F2
+              </button>
+              <button class="toggle" data-series="F3" type="button">
+                <span class="swatch" style="background:var(--f3)"></span>F3
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="chart-box tall">
+          <canvas id="demandChart" aria-label="Demand forecast line chart"></canvas>
+        </div>
+        <div id="demandNotice"></div>
+      </section>
+
+      <!-- --------------------------- Weather --------------------------- -->
+      <section class="card span-7">
+        <div class="card-head">
+          <div>
+            <h2>Next 24h Weather</h2>
+            <span class="sub">Open-Meteo &middot; hourly, interpolated</span>
+          </div>
+        </div>
+
+        <!-- Cloud cover + wind summary cards -->
+        <div class="weather-stats" id="weatherStats">
+          <div class="wstat">
+            <div class="icon" aria-hidden="true">&#127780;&#65039;</div>
+            <div class="wmeta">
+              <div class="wlabel">Cloud Cover (avg)</div>
+              <div class="wvalue" id="wCloud">&mdash;</div>
+              <div class="wrange" id="wCloudRange">&nbsp;</div>
+            </div>
+          </div>
+          <div class="wstat">
+            <div class="icon" aria-hidden="true">&#128168;</div>
+            <div class="wmeta">
+              <div class="wlabel">Wind Speed (avg)</div>
+              <div class="wvalue" id="wWind">&mdash;</div>
+              <div class="wrange" id="wWindRange">&nbsp;</div>
+            </div>
+          </div>
+          <div class="wstat">
+            <div class="icon" aria-hidden="true">&#127777;&#65039;</div>
+            <div class="wmeta">
+              <div class="wlabel">Temperature (range)</div>
+              <div class="wvalue" id="wTemp">&mdash;</div>
+              <div class="wrange" id="wTempRange">&nbsp;</div>
+            </div>
+          </div>
+          <div class="wstat">
+            <div class="icon" aria-hidden="true">&#128167;</div>
+            <div class="wmeta">
+              <div class="wlabel">Humidity (avg)</div>
+              <div class="wvalue" id="wHum">&mdash;</div>
+              <div class="wrange" id="wHumRange">&nbsp;</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Temperature + humidity dual-axis chart -->
+        <div class="chart-box short">
+          <canvas id="weatherChart" aria-label="Temperature and humidity chart"></canvas>
+        </div>
+        <div id="weatherNotice"></div>
+      </section>
+
+      <!-- -------------------------- Holidays -------------------------- -->
+      <section class="card span-5">
+        <div class="card-head">
+          <div>
+            <h2>Localized Holidays</h2>
+            <span class="sub">Dhanbad / Jharkhand &middot; upcoming</span>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table class="holidays" id="holidaysTable">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Holiday</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody id="holidaysBody">
+              <!-- rows injected by app.js -->
+            </tbody>
+          </table>
+        </div>
+        <div id="holidaysNotice"></div>
+      </section>
+
+    </main>
+
+    <footer class="app-footer">
+      <span id="footerNote">
+        Apex Power &amp; Utilities &middot; LightGBM 24h forecast &middot; data refreshes on reload
+      </span>
+    </footer>
+  </div>
+
+  <!-- ================= Loading / error full-screen overlay ================= -->
+  <div class="state-overlay" id="loadingOverlay">
+    <div class="state-card">
+      <div class="spinner" aria-hidden="true"></div>
+      <h3>Loading forecast&hellip;</h3>
+      <p>Fetching the latest 24-hour demand prediction, weather and holiday calendar.</p>
+    </div>
+  </div>
+
+  <div class="state-overlay" id="errorOverlay">
+    <div class="state-card">
+      <span class="emoji" aria-hidden="true">&#9889;</span>
+      <h3>Dashboard unavailable</h3>
+      <p id="errorMessage">
+        We couldn&rsquo;t reach the forecast service. Make sure the backend is running
+        at this address, then try again.
+      </p>
+      <button class="btn" id="retryBtn" type="button">Retry</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

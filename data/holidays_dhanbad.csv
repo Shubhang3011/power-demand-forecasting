@@ -1,0 +1,91 @@
+date,name,type,is_national,is_festive,is_industrial
+2017-01-14,Makar Sankranti / Tusu Parab,state_festive,0,1,0
+2017-01-26,Republic Day,national,1,0,0
+2017-02-24,Maha Shivratri,religious,0,1,0
+2017-03-12,Holika Dahan,religious,0,1,0
+2017-03-13,Holi,religious,0,1,0
+2017-03-30,Sarhul,state_festive,0,1,0
+2017-04-04,Ram Navami,religious,0,1,0
+2017-05-01,Labour Day,industrial,0,0,1
+2017-06-26,Eid-ul-Fitr,religious,0,1,0
+2017-08-14,Janmashtami,religious,0,1,0
+2017-08-15,Independence Day,national,1,0,0
+2017-09-01,Karma Puja,state_festive,0,1,0
+2017-09-02,Eid-ul-Adha (Bakrid),religious,0,1,0
+2017-09-17,Vishwakarma Puja,industrial,0,1,1
+2017-09-27,Durga Puja (Saptami),state_festive,0,1,0
+2017-09-28,Durga Puja (Ashtami),state_festive,0,1,0
+2017-09-29,Durga Puja (Navami),state_festive,0,1,0
+2017-09-30,Dussehra / Vijayadashami,religious,0,1,0
+2017-10-01,Muharram,religious,0,1,0
+2017-10-02,Gandhi Jayanti,national,1,0,0
+2017-10-19,Diwali,religious,0,1,0
+2017-10-20,Govardhan Puja,religious,0,1,0
+2017-10-26,Chhath Puja (Day 1),state_festive,0,1,0
+2017-10-27,Chhath Puja (Day 2),state_festive,0,1,0
+2017-11-04,Guru Nanak Jayanti,religious,0,1,0
+2017-11-15,Jharkhand Foundation Day,state,1,1,0
+2017-12-25,Christmas,religious,0,1,0
+2024-01-15,Makar Sankranti / Tusu Parab,state_festive,0,1,0
+2024-01-26,Republic Day,national,1,0,0
+2024-03-08,Maha Shivratri,religious,0,1,0
+2024-03-25,Holi,religious,0,1,0
+2024-04-11,Eid-ul-Fitr,religious,0,1,0
+2024-04-13,Sarhul,state_festive,0,1,0
+2024-04-17,Ram Navami,religious,0,1,0
+2024-05-01,Labour Day,industrial,0,0,1
+2024-06-17,Eid-ul-Adha (Bakrid),religious,0,1,0
+2024-07-17,Muharram,religious,0,1,0
+2024-08-15,Independence Day,national,1,0,0
+2024-08-26,Janmashtami,religious,0,1,0
+2024-09-14,Karma Puja,state_festive,0,1,0
+2024-09-17,Vishwakarma Puja,industrial,0,1,1
+2024-10-02,Gandhi Jayanti,national,1,0,0
+2024-10-10,Durga Puja (Saptami),state_festive,0,1,0
+2024-10-11,Durga Puja (Ashtami),state_festive,0,1,0
+2024-10-12,Dussehra / Vijayadashami,religious,0,1,0
+2024-10-31,Diwali,religious,0,1,0
+2024-11-07,Chhath Puja (Day 1),state_festive,0,1,0
+2024-11-08,Chhath Puja (Day 2),state_festive,0,1,0
+2024-11-15,Jharkhand Foundation Day,state,1,1,0
+2024-12-25,Christmas,religious,0,1,0
+2025-01-14,Makar Sankranti / Tusu Parab,state_festive,0,1,0
+2025-01-26,Republic Day,national,1,0,0
+2025-02-26,Maha Shivratri,religious,0,1,0
+2025-03-14,Holi,religious,0,1,0
+2025-03-31,Eid-ul-Fitr,religious,0,1,0
+2025-04-01,Sarhul,state_festive,0,1,0
+2025-04-06,Ram Navami,religious,0,1,0
+2025-05-01,Labour Day,industrial,0,0,1
+2025-06-07,Eid-ul-Adha (Bakrid),religious,0,1,0
+2025-07-06,Muharram,religious,0,1,0
+2025-08-15,Independence Day,national,1,0,0
+2025-08-16,Janmashtami,religious,0,1,0
+2025-09-03,Karma Puja,state_festive,0,1,0
+2025-09-17,Vishwakarma Puja,industrial,0,1,1
+2025-10-02,Gandhi Jayanti / Dussehra,national,1,1,0
+2025-10-20,Diwali,religious,0,1,0
+2025-10-27,Chhath Puja (Day 1),state_festive,0,1,0
+2025-10-28,Chhath Puja (Day 2),state_festive,0,1,0
+2025-11-05,Guru Nanak Jayanti,religious,0,1,0
+2025-11-15,Jharkhand Foundation Day,state,1,1,0
+2025-12-25,Christmas,religious,0,1,0
+2026-01-14,Makar Sankranti / Tusu Parab,state_festive,0,1,0
+2026-01-26,Republic Day,national,1,0,0
+2026-02-15,Maha Shivratri,religious,0,1,0
+2026-03-04,Holi,religious,0,1,0
+2026-03-20,Eid-ul-Fitr,religious,0,1,0
+2026-03-21,Sarhul,state_festive,0,1,0
+2026-03-26,Ram Navami,religious,0,1,0
+2026-05-01,Labour Day,industrial,0,0,1
+2026-05-27,Eid-ul-Adha (Bakrid),religious,0,1,0
+2026-06-26,Muharram,religious,0,1,0
+2026-08-15,Independence Day,national,1,0,0
+2026-09-04,Janmashtami,religious,0,1,0
+2026-09-17,Vishwakarma Puja,industrial,0,1,1
+2026-10-02,Gandhi Jayanti,national,1,0,0
+2026-10-20,Dussehra / Vijayadashami,religious,0,1,0
+2026-11-08,Diwali,religious,0,1,0
+2026-11-15,Chhath Puja / Jharkhand Foundation Day,state_festive,1,1,0
+2026-11-24,Guru Nanak Jayanti,religious,0,1,0
+2026-12-25,Christmas,religious,0,1,0

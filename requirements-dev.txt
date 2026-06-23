@@ -1,0 +1,7 @@
+# Notebook / EDA dependencies (in addition to requirements.txt)
+-r requirements.txt
+matplotlib==3.10.6
+seaborn==0.13.2
+jupyter
+notebook
+ipykernel

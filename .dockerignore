@@ -1,0 +1,56 @@
+# =============================================================================
+# Keep the build context small and the image clean. Everything listed here is
+# excluded from `COPY . .`. The committed model artifacts (models/*.pkl,
+# models/*.json) and the dataset (data/*.csv) are intentionally NOT ignored:
+# they are deliverables required for the API to work out of the box.
+# =============================================================================
+
+# --- Python caches / bytecode ------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# --- Virtual environments ----------------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+
+# --- Notebooks: ship the .ipynb but never its checkpoint cruft ---------------
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
+
+# --- Test / type / lint caches -----------------------------------------------
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- Version control / CI ----------------------------------------------------
+.git/
+.gitignore
+.github/
+
+# --- OS / editor noise -------------------------------------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# --- Local env / logs --------------------------------------------------------
+.env
+*.log
+
+# --- Docker meta (not needed inside the image) -------------------------------
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# --- Dev-only requirements (notebook stack is not needed in the runtime image)
+requirements-dev.txt

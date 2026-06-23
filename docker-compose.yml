@@ -1,0 +1,26 @@
+# =============================================================================
+# One-command run for the Power Demand Forecasting app.
+#
+#   docker compose up --build
+#   open http://localhost:8000
+#
+# Builds the local Dockerfile and exposes the FastAPI server (dashboard at /,
+# JSON API under /api) on host port 8000.
+# =============================================================================
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: power-demand-forecasting:latest
+    container_name: power-demand-forecasting
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    # Liveness check hits the API health endpoint (model + service status).
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0) if urllib.request.urlopen('http://localhost:8000/api/health', timeout=5).status==200 else sys.exit(1)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
